@@ -19,7 +19,6 @@ import Navbar from "./base/Navbar";
 import Sidebar from "./base/Sidebar";
 import { BrowserRouter as Router } from "react-router-dom";
 import PageRoute from "./base/PageRoute";
-import Footer from "./base/Footer";
 
 const drawerWidth = 230;
 
@@ -72,6 +71,10 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("sm")]: {
       width: theme.spacing(7) + 1,
     },
+    // width: 0,
+    // [theme.breakpoints.up("sm")]: {
+    //   width: 0,
+    // },
   },
   toolbar: {
     display: "flex",
@@ -128,6 +131,7 @@ export default function BaseLayout(props) {
         </AppBar>
         <Drawer
           variant="permanent"
+          anchor="left"
           className={clsx(classes.drawer, {
             [classes.drawerOpen]: open,
             [classes.drawerClose]: !open,
@@ -155,9 +159,6 @@ export default function BaseLayout(props) {
           <div className={classes.toolbar} />
           <PageRoute></PageRoute>
         </main>
-        <footer>
-          <Footer></Footer>
-        </footer>
       </Router>
     </div>
   );

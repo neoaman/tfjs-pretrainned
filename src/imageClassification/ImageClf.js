@@ -45,7 +45,7 @@ const ImageClf = () => {
         justify="center"
         alignItems="center"
         direction="column"
-        style={{ maxWidth: "30vw", height: "70vh" }}
+        style={{ maxWidth: "30%" }}
       >
         <Card style={{ maxWidth: 345 }}>
           <CardActionArea>
@@ -54,9 +54,9 @@ const ImageClf = () => {
               alt="Provide Image here"
               id="img"
               title="Input Image"
-              style={{ maxHeight: "60vh", maxWidth: "30vw" }}
+              style={{ maxHeight: "60vh", maxWidth: "100%" }}
               image={imhUrl}
-              crossorigin="anonymous"
+              crossOrigin="anonymous"
             ></CardMedia>
             <CardContent>
               <TextField
@@ -70,13 +70,13 @@ const ImageClf = () => {
       </Grid>
       <Grid
         container
-        style={{ maxWidth: "5vw" }}
+        style={{ maxWidth: "5%" }}
         justify="center"
         alignItems="center"
         direction="column"
       >
         {model === null ? (
-          <Grid item align="center" justify="center">
+          <Grid item align="center">
             <BiChip className="App-logo" size="40" color="steelblue"></BiChip>
           </Grid>
         ) : (
@@ -85,17 +85,18 @@ const ImageClf = () => {
           </IconButton>
         )}
       </Grid>
-      <Grid container style={{ maxWidth: "30vw" }}>
+      <Grid container style={{ maxWidth: "30%" }}>
         {predVal &&
-          predVal.map((q) => (
+          predVal.map((q, i) => (
             <Grid
+              key={i}
               container
               direction="row"
               alignItems="center"
               justify="center"
             >
               <Typography
-                style={{ width: "25vw" }}
+                style={{ width: "90%" }}
                 display="inline"
                 align="center"
               >
@@ -103,7 +104,7 @@ const ImageClf = () => {
               </Typography>
               <LinearProgress
                 color={q["probability"] * 100 > 50 ? "primary" : "secondary"}
-                style={{ width: "25vw" }}
+                style={{ width: "90%" }}
                 variant="determinate"
                 value={q["probability"] * 100}
               />

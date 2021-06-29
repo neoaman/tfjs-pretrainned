@@ -9,10 +9,12 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 import {} from "react-icons/im";
+// import { FaRegObjectGroup } from "react-icons/fa";
 import {
   // FcDocument,
   FcHome,
   FcPicture,
+  FcSelfie,
 } from "react-icons/fc";
 // import { FaGithub } from "react-icons/fa";
 
@@ -62,6 +64,19 @@ const Sidebar = () => {
           <FcPicture size={25}></FcPicture>
         </ListItemIcon>
         <ListItemText primary="Image Classification" />
+      </ListItem>
+
+      <ListItem
+        button
+        component={NavLink}
+        to="/objectDetection"
+        className={classes.navlink}
+        activeClassName={classes.activelink}
+      >
+        <ListItemIcon>
+          <FcSelfie size={25} color="blue"></FcSelfie>
+        </ListItemIcon>
+        <ListItemText primary="Object Detection" />
       </ListItem>
 
       {/* <ListItem

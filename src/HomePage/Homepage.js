@@ -13,12 +13,10 @@ const Homepage = () => {
         Tensorflow Javascript
       </Typography>
       <Typography style={{ maxWidth: "80vw", padding: 5 }}>
-        <p>
-          Its a opensource Javascript library, which is capable enough to train
-          and serve a complex neural network without any backened. There are
-          lots of pre trainned models available in its official site, here are
-          few of them.
-        </p>
+        Its a opensource Javascript library, which is capable enough to train
+        and serve a complex neural network without any backened. There are lots
+        of pre trainned models available in its official site, here are few of
+        them.
       </Typography>
     </Grid>
   );
