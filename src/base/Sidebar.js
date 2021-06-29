@@ -9,27 +9,25 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 import {} from "react-icons/im";
-import { FcDocument, FcHome, FcPicture } from "react-icons/fc";
-import { FaGithub } from "react-icons/fa";
+import {
+  // FcDocument,
+  FcHome,
+  FcPicture,
+} from "react-icons/fc";
+// import { FaGithub } from "react-icons/fa";
 
 const useStyles = makeStyles({
   navlink: {
     textDecoration: "none",
-    color: "black",
-    fa_icon: {
-      color: "blue",
-    },
+    color: "#293241",
   },
   activelink: {
     fontWeight: "bolder",
-    color: "blue",
-    backgroundColor: "LightSteelBlue",
+    color: "#8e96a3",
+    backgroundColor: "#425066",
     "&:hover": {
-      backgroundColor: "LightSteelBlue",
+      backgroundColor: "#425066",
       opacity: 1,
-    },
-    fa_icon: {
-      color: "blue",
     },
   },
   itemlist: {},
@@ -66,7 +64,7 @@ const Sidebar = () => {
         <ListItemText primary="Image Classification" />
       </ListItem>
 
-      <ListItem
+      {/* <ListItem
         button
         component={NavLink}
         to="/textClassification"
@@ -92,7 +90,7 @@ const Sidebar = () => {
         <ListItemText primary="Repository" />
       </ListItem>
 
-      {/* <ListItem
+      <ListItem
         button
         component={NavLink}
         to="/contact"

@@ -2,7 +2,7 @@ import "./App.css";
 import Layout from "./Layout";
 
 const static_base = {
-  title: "Tensorflow JS Pre trainned Models",
+  title: "TensorFlow-JS pre-trainned models",
   icon: "SiTensorflow",
 };
 
