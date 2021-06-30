@@ -2,11 +2,7 @@ import React from "react";
 import {
   Grid,
   Typography,
-  Card,
-  CardActionArea,
-  CardMedia,
   TextField,
-  CardContent,
   IconButton,
   LinearProgress,
 } from "@material-ui/core";
@@ -16,9 +12,12 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { AiOutlineDoubleRight } from "react-icons/ai";
 import { BiChip } from "react-icons/bi";
+import "@tensorflow/tfjs";
 import * as mobilenet from "@tensorflow-models/mobilenet";
+import { useRef } from "react";
 
 const ImageClf = () => {
+  const imgRef = useRef(null);
   const [imhUrl, setImhUrl] = useState("/static/defaultImg.jpg");
   const [predVal, setPredVal] = useState(null);
   const [model, setModel] = useState(null);
@@ -32,8 +31,8 @@ const ImageClf = () => {
   }, []);
 
   const predict = async (params) => {
-    const img = document.getElementById("img");
-    const predictions = await model.classify(img);
+    // const img = document.getElementById("img");
+    const predictions = await model.classify(imgRef.current);
     console.log(predictions);
     setPredVal(predictions);
   };
@@ -47,41 +46,31 @@ const ImageClf = () => {
         direction="column"
         style={{ maxWidth: "30%" }}
       >
-        <Card style={{ maxWidth: 345 }}>
-          <CardActionArea>
-            <CardMedia
-              component="img"
-              alt="Provide Image here"
-              id="img"
-              title="Input Image"
-              style={{ maxHeight: "60vh", maxWidth: "100%" }}
-              image={imhUrl}
-              crossOrigin="anonymous"
-            ></CardMedia>
-            <CardContent>
-              <TextField
-                value={imhUrl}
-                style={{ width: "100%" }}
-                onChange={(e) => setImhUrl(e.target.value)}
-              ></TextField>
-            </CardContent>
-          </CardActionArea>
-        </Card>
+        <img
+          src={imhUrl}
+          ref={imgRef}
+          style={{ maxHeight: "60vh", maxWidth: "100%" }}
+          crossOrigin="anonymous"
+          alt="Input"
+        ></img>
+        <TextField
+          value={imhUrl}
+          style={{ width: "100%" }}
+          onChange={(e) => setImhUrl(e.target.value)}
+        ></TextField>
       </Grid>
       <Grid
         container
-        style={{ maxWidth: "5%" }}
+        style={{ maxWidth: "5%", maxHeight: "10vh" }}
         justify="center"
         alignItems="center"
         direction="column"
       >
         {model === null ? (
-          <Grid item align="center">
-            <BiChip className="App-logo" size="40" color="steelblue"></BiChip>
-          </Grid>
+          <BiChip className="App-logo" size="20" color="steelblue"></BiChip>
         ) : (
           <IconButton onClick={() => predict()}>
-            <AiOutlineDoubleRight></AiOutlineDoubleRight>
+            <AiOutlineDoubleRight size="20"></AiOutlineDoubleRight>
           </IconButton>
         )}
       </Grid>

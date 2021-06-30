@@ -2,6 +2,7 @@ import React from "react";
 import { Grid, Typography, TextField, IconButton } from "@material-ui/core";
 import { useEffect } from "react";
 import { useState } from "react";
+import "@tensorflow/tfjs";
 import { AiOutlineDoubleRight } from "react-icons/ai";
 import { BiChip } from "react-icons/bi";
 import { BsCircleFill } from "react-icons/bs";
@@ -18,7 +19,7 @@ const ObjDetect = () => {
   const [model, setModel] = useState(null);
   const [dim, setDim] = useState(null);
   const [bbColor, setBbColor] = useState("white");
-  const [bbWidth] = useState("1");
+  const [bbWidth, setBbWidth] = useState(1);
 
   useEffect(() => {
     const loadModel = async (params) => {
@@ -34,8 +35,6 @@ const ObjDetect = () => {
     setDim([width, height]);
     canvasRef.current.height = height;
     canvasRef.current.width = width;
-    const ctx = canvasRef.current.getContext("2d");
-    ctx.drawImage(imgRef.current, 0, 0, width, height);
   };
 
   const predict = async (params) => {
@@ -43,8 +42,6 @@ const ObjDetect = () => {
       const predictions = await model.detect(imgRef.current);
       console.log(predictions);
       setPredVal(predictions);
-      const ctx = canvasRef.current.getContext("2d");
-      ctx.drawImage(imgRef.current, 0, 0, dim[0], dim[1]);
       drawBBox(predictions);
     }
   };
@@ -59,6 +56,7 @@ const ObjDetect = () => {
 
   const drawBBox = (predVal) => {
     const ctx = canvasRef.current.getContext("2d");
+    ctx.drawImage(imgRef.current, 0, 0, dim[0], dim[1]);
     ctx.lineWidth = `${bbWidth}`;
     ctx.strokeStyle = `${bbColor}`;
     ctx.fillStyle = `${bbColor}`;
@@ -102,15 +100,13 @@ const ObjDetect = () => {
       </Grid>
       <Grid
         container
-        style={{ maxWidth: "5%" }}
+        style={{ maxWidth: "5%", maxHeight: "10vh" }}
         justify="center"
         alignItems="center"
         direction="column"
       >
         {model === null ? (
-          <Grid container item align="center" justify="center">
-            <BiChip className="App-logo" size="40" color="steelblue"></BiChip>
-          </Grid>
+          <BiChip className="App-logo" size="40" color="steelblue"></BiChip>
         ) : (
           <IconButton onClick={() => predict()}>
             <AiOutlineDoubleRight></AiOutlineDoubleRight>
@@ -138,15 +134,24 @@ const ObjDetect = () => {
               borderBlock: "1px solid green",
               marginBlock: 3,
             }}
-          >
-            Output Image
-          </Typography>
+          ></Typography>
+          <TextField
+            type="number"
+            value={bbWidth}
+            onChange={(e) => setBbWidth(e.target.value)}
+            style={{ width: 35 }}
+          ></TextField>
+
           {["blue", "red", "yellow", "white", "black"].map((c) => (
             <IconButton
               key={c}
               size="small"
               onClick={() => setBbColor(c)}
-              style={{ border: "1px solid black" }}
+              style={
+                c === bbColor
+                  ? { border: "2px solid black" }
+                  : { border: "1px solid gray" }
+              }
             >
               <BsCircleFill color={c}></BsCircleFill>
             </IconButton>
