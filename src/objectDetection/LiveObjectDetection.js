@@ -20,7 +20,7 @@ const LiveObjectDetection = () => {
       >
         <IoCameraReverse></IoCameraReverse>
       </IconButton>
-      <Webcam videoConstraints={{ facingMode: facingMode }}></Webcam>
+      {/* <Webcam videoConstraints={{ facingMode: facingMode }}></Webcam> */}
       <Webcam
         videoConstraints={{ facingMode: { exact: "environment" } }}
       ></Webcam>
