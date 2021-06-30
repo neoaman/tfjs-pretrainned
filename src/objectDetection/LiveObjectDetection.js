@@ -114,17 +114,21 @@ const LiveObjectDetection = () => {
         direction="column"
         style={{ width: "5vw" }}
       >
-        <IconButton
-          onClick={() => setStart(!start)}
-          size="small"
-          style={{ zIndex: 1260 }}
-        >
-          {start ? (
-            <VscDebugStop color="green"></VscDebugStop>
-          ) : (
-            <VscDebugStart color="orange"></VscDebugStart>
-          )}
-        </IconButton>
+        {model !== null ? (
+          <IconButton
+            onClick={() => setStart(!start)}
+            size="small"
+            style={{ zIndex: 1260 }}
+          >
+            {start ? (
+              <VscDebugStop color="green"></VscDebugStop>
+            ) : (
+              <VscDebugStart color="orange"></VscDebugStart>
+            )}
+          </IconButton>
+        ) : (
+          "Loading Model....."
+        )}
 
         {start ? (
           ""
