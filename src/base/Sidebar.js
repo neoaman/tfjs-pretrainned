@@ -11,6 +11,7 @@ import { NavLink } from "react-router-dom";
 import {} from "react-icons/im";
 // import { FaRegObjectGroup } from "react-icons/fa";
 import {
+  FcCloseUpMode,
   // FcDocument,
   FcHome,
   FcPicture,
@@ -74,9 +75,22 @@ const Sidebar = () => {
         activeClassName={classes.activelink}
       >
         <ListItemIcon>
-          <FcSelfie size={25} color="blue"></FcSelfie>
+          <FcCloseUpMode size={25} color="blue"></FcCloseUpMode>
         </ListItemIcon>
         <ListItemText primary="Object Detection" />
+      </ListItem>
+
+      <ListItem
+        button
+        component={NavLink}
+        to="/liveObjectDetection"
+        className={classes.navlink}
+        activeClassName={classes.activelink}
+      >
+        <ListItemIcon>
+          <FcSelfie size={25} color="blue"></FcSelfie>
+        </ListItemIcon>
+        <ListItemText primary="Live Obj Detection" />
       </ListItem>
 
       {/* <ListItem

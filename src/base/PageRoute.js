@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import Homepage from "../HomePage/Homepage";
 import ImageClf from "../imageClassification/ImageClf";
+import LiveObjectDetection from "../objectDetection/LiveObjectDetection";
 import ObjDetect from "../objectDetection/ObjDetect";
 
 const PageRoute = () => {
@@ -12,6 +13,10 @@ const PageRoute = () => {
       </Route>
       <Route path="/imageClassification" component={ImageClf}></Route>
       <Route path="/objectDetection" component={ObjDetect}></Route>
+      <Route
+        path="/liveObjectDetection"
+        component={LiveObjectDetection}
+      ></Route>
       <Route path="/textClassification">
         Text Classification will be available soon ...
       </Route>
