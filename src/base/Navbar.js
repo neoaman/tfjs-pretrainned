@@ -5,7 +5,7 @@ import { SiTensorflow } from "react-icons/si";
 const Navbar = ({ title }) => {
   return (
     <Grid container direction="row" justify="flex-start" alignItems="center">
-      <SiTensorflow size="25" color="#ff9100"></SiTensorflow>
+      <SiTensorflow size="20" color="#ff9100"></SiTensorflow>
       <Typography
         variant="h6"
         style={{ marginInline: 10, fontFamily: "fantasy" }}
