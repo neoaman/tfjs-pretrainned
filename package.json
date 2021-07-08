@@ -1,9 +1,14 @@
 {
-  "name": "pretrained_models",
+  "name": "model_pretrained",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.12.1",
+    "@material-ui/icons": "^4.11.2",
+    "@material-ui/lab": "^4.0.0-alpha.60",
     "@tensorflow-models/coco-ssd": "^2.2.2",
+    "@tensorflow-models/mobilenet": "^2.1.0",
+    "@tensorflow/tfjs": "^3.7.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
@@ -11,10 +16,23 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.2.0",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "react-webcam": "^5.2.4",
-    "seedrandom": "^3.0.5",
-    "web-vitals": "^1.1.2"
+    "seedrandom": "^2.4.4",
+    "web-vitals": "^0.2.4",
+    "workbox-background-sync": "^5.1.4",
+    "workbox-broadcast-update": "^5.1.4",
+    "workbox-cacheable-response": "^5.1.4",
+    "workbox-core": "^5.1.4",
+    "workbox-expiration": "^5.1.4",
+    "workbox-google-analytics": "^5.1.4",
+    "workbox-navigation-preload": "^5.1.4",
+    "workbox-precaching": "^5.1.4",
+    "workbox-range-requests": "^5.1.4",
+    "workbox-routing": "^5.1.4",
+    "workbox-strategies": "^5.1.4",
+    "workbox-streams": "^5.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -39,13 +57,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "@material-ui/core": "^4.11.4",
-    "@material-ui/icons": "^4.11.2",
-    "@material-ui/lab": "^4.0.0-alpha.58",
-    "@tensorflow-models/mobilenet": "^2.1.0",
-    "@tensorflow/tfjs": "^3.7.0",
-    "react-router-dom": "^5.2.0"
   }
 }
