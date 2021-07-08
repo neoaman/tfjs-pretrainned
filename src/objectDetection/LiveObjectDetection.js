@@ -22,8 +22,8 @@ const LiveObjectDetection = () => {
   const [facingMode, setFacingMode] = useState(FACING_MODE_USER);
   const webCamRef = useRef(null);
   const canvasRef = useRef(null);
-  const [canvasWidth, setCanvasWidth] = useState(80);
-  const [canvasHeight, setCanvasHeight] = useState(80);
+  const [canvasWidth, setCanvasWidth] = useState(70);
+  const [canvasHeight, setCanvasHeight] = useState(70);
   const [start, setStart] = useState(false);
 
   const [model, setModel] = useState(null);
@@ -55,7 +55,7 @@ const LiveObjectDetection = () => {
     var rH = Swidth / (Sheight * vRatio);
 
     if (rH < 1) {
-      setCanvasHeight((1 / rH) * canvasHeight);
+      setCanvasHeight(rH * canvasHeight);
     }
     if (rW < 1) {
       setCanvasWidth(rW * canvasWidth);
@@ -67,14 +67,6 @@ const LiveObjectDetection = () => {
     ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
     if (start === true) {
       const predVal = await model.detect(webCamRef.current.video);
-      // console.log(predVal);
-      // ctx.drawImage(
-      //   webCamRef.current.video,
-      //   0,
-      //   0,
-      //   canvasRef.current.width,
-      //   canvasRef.current.height
-      // );
 
       // Here webcam inputsize and and canvas size are not same
       var rW = webCamRef.current.video.videoWidth / canvasRef.current.width;
@@ -106,14 +98,52 @@ const LiveObjectDetection = () => {
   };
 
   return (
-    <Grid container justify="flex-start" alignItems="center" direction="row">
-      <Grid
-        container
-        justify="center"
-        alignItems="center"
-        direction="column"
-        style={{ width: "5vw" }}
-      >
+    <Grid
+      container
+      justify="center"
+      alignItems="center"
+      direction="column"
+      spacing={0}
+    >
+      <Grid item xs={12} md={10} lg={10} align="center">
+        <Grid
+          item
+          xs={12}
+          md={12}
+          lg={12}
+          style={{ position: "relative" }}
+          align="center"
+        >
+          <Webcam
+            onLoadedData={() => adjustCanvas()}
+            ref={webCamRef}
+            audio={false}
+            onProgressCapture={() => drawBBox()}
+            screenshotFormat="image/jpeg"
+            videoConstraints={{
+              ...videoConstraints,
+              facingMode,
+            }}
+            style={{
+              position: "absolute",
+              width: `${canvasWidth}vw`,
+              height: `${canvasHeight}vh`,
+              zIndex: 1250,
+            }}
+          />
+          <canvas
+            ref={canvasRef}
+            style={{
+              position: "relative",
+              width: `${canvasWidth}vw`,
+              height: `${canvasHeight}vh`,
+              zIndex: 1251,
+              border: "2px solid green",
+            }}
+          ></canvas>
+        </Grid>
+      </Grid>
+      <Grid item xs={12} lg={12} md={12} align="center">
         {model !== null ? (
           <IconButton
             onClick={() => setStart(!start)}
@@ -142,8 +172,8 @@ const LiveObjectDetection = () => {
                     : FACING_MODE_USER
                 );
                 console.log(facingMode);
-                setCanvasWidth(80);
-                setCanvasWidth(80);
+                setCanvasWidth(70);
+                setCanvasHeight(70);
               }}
               size="small"
               style={{ zIndex: 1260, backgroundColor: "red" }}
@@ -175,42 +205,6 @@ const LiveObjectDetection = () => {
           </>
         )}
       </Grid>
-      <div
-        style={{
-          display: "inline-block",
-          margin: "0 auto",
-          background: "black",
-          position: "relative",
-        }}
-      >
-        <Webcam
-          onLoadedData={() => adjustCanvas()}
-          ref={webCamRef}
-          audio={false}
-          onProgressCapture={() => drawBBox()}
-          screenshotFormat="image/jpeg"
-          videoConstraints={{
-            ...videoConstraints,
-            facingMode,
-          }}
-          style={{
-            position: "absolute",
-            width: `${canvasWidth}vw`,
-            height: `${canvasHeight}vh`,
-            zIndex: 1250,
-          }}
-        />
-        <canvas
-          ref={canvasRef}
-          style={{
-            position: "relative",
-            width: `${canvasWidth}vw`,
-            height: `${canvasHeight}vh`,
-            zIndex: 1251,
-            border: "2px solid green",
-          }}
-        ></canvas>
-      </div>
     </Grid>
   );
 };

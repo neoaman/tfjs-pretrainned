@@ -75,13 +75,7 @@ const ObjDetect = () => {
 
   return (
     <Grid container justify="center" alignItems="center" direction="row">
-      <Grid
-        container
-        justify="center"
-        alignItems="center"
-        direction="column"
-        style={{ maxWidth: "40%", maxHeight: "80vh" }}
-      >
+      <Grid item xs={12} md={12} lg={5} align="center">
         <img
           src={imhUrl}
           alt="Input"
@@ -98,13 +92,7 @@ const ObjDetect = () => {
           }}
         ></TextField>
       </Grid>
-      <Grid
-        container
-        style={{ maxWidth: "5%", maxHeight: "10vh" }}
-        justify="center"
-        alignItems="center"
-        direction="column"
-      >
+      <Grid item xs={12} md={12} lg={2} align="center">
         {model === null ? (
           <BiChip className="App-logo" size="40" color="steelblue"></BiChip>
         ) : (
@@ -113,13 +101,7 @@ const ObjDetect = () => {
           </IconButton>
         )}
       </Grid>
-      <Grid
-        container
-        direction="column"
-        justify="center"
-        alignItems="center"
-        style={{ maxWidth: "40%", maxHeight: "70vh" }}
-      >
+      <Grid item xs={12} md={12} lg={5} align="center">
         <canvas
           alt="Input Image"
           ref={canvasRef}

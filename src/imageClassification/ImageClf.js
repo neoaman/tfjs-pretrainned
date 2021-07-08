@@ -39,13 +39,7 @@ const ImageClf = () => {
 
   return (
     <Grid container justify="center" alignItems="center" direction="row">
-      <Grid
-        container
-        justify="center"
-        alignItems="center"
-        direction="column"
-        style={{ maxWidth: "30%" }}
-      >
+      <Grid item xs={12} md={12} lg={5} align="center">
         <img
           src={imhUrl}
           ref={imgRef}
@@ -59,13 +53,7 @@ const ImageClf = () => {
           onChange={(e) => setImhUrl(e.target.value)}
         ></TextField>
       </Grid>
-      <Grid
-        container
-        style={{ maxWidth: "5%", maxHeight: "10vh" }}
-        justify="center"
-        alignItems="center"
-        direction="column"
-      >
+      <Grid item xs={12} md={12} lg={2} align="center">
         {model === null ? (
           <BiChip className="App-logo" size="20" color="steelblue"></BiChip>
         ) : (
@@ -74,7 +62,7 @@ const ImageClf = () => {
           </IconButton>
         )}
       </Grid>
-      <Grid container style={{ maxWidth: "30%" }}>
+      <Grid item xs={12} md={12} lg={5} align="center">
         {predVal &&
           predVal.map((q, i) => (
             <Grid
